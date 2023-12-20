@@ -52,8 +52,10 @@ function EQL3_ScanTooltipItem(queryString)
 	if(queryString == nil) then return false; end
 	
 	local oldSelection = GetQuestLogSelection();
-		if(oldSelection < 1) then oldSelection = 1; end
-		
+	if(oldSelection < 1) then oldSelection = 1; end
+
+	local selectedQuest = EQL3_Temp.savedSelectedQuest
+
 	local questID;
 	local numEntries = GetNumQuestLogEntries();
 	local questTitle, level, questTag, isHeader;
@@ -68,7 +70,7 @@ function EQL3_ScanTooltipItem(queryString)
 		
 		if (not isHeader) then
 			SelectQuestLogEntry(questID);
-			if(questTitle) then				
+			if(questTitle) then
 				numObjectives = GetNumQuestLeaderBoards();
 				if(numObjectives > 0) then	
 					
@@ -131,7 +133,8 @@ function EQL3_ScanTooltipItem(queryString)
 		end
 		
 	end -- loop through all quests
-	
+
+	SelectQuestLogEntry(selectedQuest);
 end
 
 
