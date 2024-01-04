@@ -52,9 +52,6 @@ function EQL3_ScanTooltipItem(queryString)
 	if(queryString == nil) then return false; end
 	
 	local oldSelection = GetQuestLogSelection();
-	if(oldSelection < 1) then oldSelection = 1; end
-
-	local selectedQuest = EQL3_Temp.savedSelectedQuest
 
 	local questID;
 	local numEntries = GetNumQuestLogEntries();
@@ -134,7 +131,7 @@ function EQL3_ScanTooltipItem(queryString)
 		
 	end -- loop through all quests
 
-	SelectQuestLogEntry(selectedQuest);
+	if (oldSelection > 0) then SelectQuestLogEntry(oldSelection); end;
 end
 
 
